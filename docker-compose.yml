@@ -1,0 +1,7 @@
+syncopedocker:
+  image: syncope-docker
+  expose:
+    - "8080"
+  ports:
+    - "9080:8080"
+
