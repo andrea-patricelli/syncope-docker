@@ -1,5 +1,5 @@
-CREATE USER 'syncope'@'localhost' IDENTIFIED BY 'syncope';
+--CREATE USER 'syncope'@'localhost' IDENTIFIED BY 'syncope';
 
 CREATE DATABASE IF NOT EXISTS syncope;
 
-GRANT ALL PRIVILEGES ON syncope.* TO 'syncope'@'localhost' ;
+GRANT ALL PRIVILEGES ON syncope.* TO 'syncope'@'localhost' IDENTIFIED BY 'syncope';
