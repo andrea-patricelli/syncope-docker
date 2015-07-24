@@ -1,8 +1,11 @@
-FROM williamyeh/java7
-#FROM ubuntu
+#FROM williamyeh/java7
+FROM monsantoco/min-jessie:latest
 
-RUN set -x && apt-get update
-RUN apt-get install -y unzip
+# RUN set -x && apt-get update
+# RUN apt-get install -y unzip
+
+
+RUN apt-get update && apt-get install -y unzip openjdk-7-jre
 
 # Download Apache Tomcat 8 and unpackage it
 WORKDIR /
