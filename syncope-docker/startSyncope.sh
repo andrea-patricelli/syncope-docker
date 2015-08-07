@@ -1,16 +1,13 @@
 #!/usr/bin/env bash
 
-echo START MYSQL SERVICE
+echo Starting mysql service...
 
 service mysql start
 #/etc/init.d/mysql start
 
-echo SETUP DATABASE
+echo Setup Syncope Database through initializeSyncopeDB.sql script
 
 cd /app/                                                                                                                                         
-echo I am in `pwd`
-echo CONFIGURE SYNCOPE DATABASE
-
 mysql -uroot -proot < /app/initializeSyncopeDB.sql                                                                                               
 echo START TOMCAT                                                                                                                                                                        
 echo "Wait for container startup... about 60 seconds remaining..."

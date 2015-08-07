@@ -1,5 +1,7 @@
-FROM williamyeh/java7
+#FROM williamyeh/java7
+FROM monsantoco/min-jessie:latest
 #FROM ubuntu
+#FROM jeanblanchard/java:jre-7
 
 RUN set -x && apt-get update
 RUN apt-get install -y unzip
@@ -26,6 +28,8 @@ RUN mkdir -p /app/syncope/conf
 
 RUN apt-get update
 RUN apt-get install -y mysql-client
+
+RUN apt-get install -y openjdk-7-jre
 
 RUN echo mysql-server mysql-server/root_password password root | debconf-set-selections
 RUN echo mysql-server mysql-server/root_password_again password root | debconf-set-selections
