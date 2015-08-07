@@ -29,6 +29,7 @@ RUN mkdir -p /app/syncope/conf
 RUN apt-get update
 RUN apt-get install -y mysql-client
 
+#Install Java JRE 7
 RUN apt-get install -y openjdk-7-jre
 
 RUN echo mysql-server mysql-server/root_password password root | debconf-set-selections
