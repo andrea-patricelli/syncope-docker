@@ -8,4 +8,4 @@ docker build -t syncope-docker .
 
 From now you have also to provide two (well configured) syncope wars (in the syncope-docker directory, we omitted to commit them for obvious reasons): `syncope.war` and `syncope-console.war`.
 You have to build them with installation path `/app/syncope`.
-Please see this project wiki and Apache Syncope wiki: [https://cwiki.apache.org/confluence/display/SYNCOPE/Run+Syncope+in+real+environments]].
+Please see this project wiki and Apache Syncope wiki: https://cwiki.apache.org/confluence/display/SYNCOPE/Run+Syncope+in+real+environments.
