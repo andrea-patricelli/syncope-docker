@@ -1,7 +1,16 @@
 syncopedocker:
-  image: syncope-docker
+  image: syncope-docker-small
   expose:
     - "8080"
   ports:
     - "9080:8080"
+  links:
+    - mysql:database
+#  entrypoint: /code/entrypoint.sh
 
+mysql:
+  image: mysql
+  expose:
+    - "3306"
+  environment:
+    MYSQL_ROOT_PASSWORD: root
