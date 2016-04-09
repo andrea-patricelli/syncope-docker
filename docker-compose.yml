@@ -1,7 +1,23 @@
+######################
+#  PostgreSQL Database
+######################
+postgres:
+  image: postgres:9.1
+  ports:
+   - "15432:5432"
+  environment:
+    POSTGRES_PASSWORD: syncope
+    POSTGRES_USER: syncope
+    POSTGRES_DB: syncope    
+#  volumes:
+   # - ./db-scripts_pms/:/docker-entrypoint-initdb.d/:rw
+#    - /srv/docker/data/pms-db/:/var/lib/mysql/:rw
+
 syncopedocker:
   image: syncope-docker
   expose:
     - "8080"
   ports:
     - "9080:8080"
-
+  links:
+    - postgres
