@@ -1,11 +1,10 @@
 # syncope-docker
 
 This is a sample project to have an Apache Syncope project in a Docker container.
-You just have to go under directory `syncope-docker` and to run:
-``
-docker build -t syncope-docker .
-``
 
-From now you have also to provide two (well configured) syncope wars (in the syncope-docker directory, we omitted to commit them for obvious reasons): `syncope.war` and `syncope-console.war`.
-You have to build them with installation path `/app/syncope`.
-Please see this project wiki and Apache Syncope wiki: https://cwiki.apache.org/confluence/display/SYNCOPE/Run+Syncope+in+real+environments.
+You will find two ways to run Apache Syncope with docker. The simplest is to use the `docker-compose` utility; to do so you have to checkout the `syncope_docker_deb` branch of this project.
+
+More info at: https://github.com/andrea-patricelli/syncope-docker/wiki/How-to-start-Syncope-Docker-application#run-with-docker-compose
+
+This is only a sample (and simple) project, a lot of work could be done to improve several aspects of installation. The aim of this project is to provide a valid (and really implementable) solution and alternative to canonical Apache Syncope installations.
+We are open to support and new contributors ;)
