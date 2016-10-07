@@ -11,8 +11,8 @@ RUN set -x && apt-get update
 
 # Download Apache Syncope debs
 WORKDIR /
-ADD http://it.apache.contactlab.it/syncope/1.2.7/apache-syncope-1.2.7.deb /apache-syncope-1.2.7.deb
-ADD http://mirrors.muzzy.it/apache/syncope/1.2.7/apache-syncope-console-1.2.7.deb /apache-syncope-console-1.2.7.deb
+ADD http://mirror.nohup.it/apache/syncope/1.2.8/apache-syncope-1.2.8.deb /apache-syncope-1.2.8.deb
+ADD http://mirror.nohup.it/apache/syncope/1.2.8/apache-syncope-console-1.2.8.deb /apache-syncope-console-1.2.8.deb
 
 #RUN apt-get  -y install tomcat7 libpostgresql-jdbc-java postgresql postgresql-client openjdk-7-jre
 RUN apt-get  -y install tomcat7 libpostgresql-jdbc-java openjdk-7-jre
