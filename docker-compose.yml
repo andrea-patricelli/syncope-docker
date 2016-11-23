@@ -18,19 +18,49 @@ services:
    # - ./db-scripts_pms/:/docker-entrypoint-initdb.d/:rw
 #    - /srv/docker/data/pms-db/:/var/lib/mysql/:rw
 
-####################
-#  Apache Syncope  #
-####################
+#########################
+#  Apache Syncope Core  #
+#########################
 
     syncope-core:
       image: syncope-docker-core:2.0.1
       expose:
         - "8080"
       ports:
-        - "9080:8080"
+        - "8080:8080"
       volumes:
-        - /var/log/apache-syncope:/tmp/:rw
+        - /var/log/apache-syncope:/tmp/log/apache-syncope/core:rw
       depends_on:
         -  postgres      
-      links:
-        - postgres
+#      links:
+#        - postgres
+
+############################
+#  Apache Syncope Console  #
+############################
+
+    syncope-console:
+      image:  syncope-docker-console:2.0.1
+      expose:
+        - "8080"
+      ports:
+        - "9080:8080"
+      volumes:
+        - /var/log/apache-syncope:/tmp/log/apache-syncope/console:rw
+      depends_on:
+        - syncope-core
+
+###############################
+#  Apache Syncope Enduser UI  #
+###############################
+
+    syncope-enduser:
+      image:  syncope-docker-enduser:2.0.1
+      expose:
+        - "8080"
+      ports:
+        - "7080:8080"
+      volumes:
+        - /var/log/apache-syncope:/tmp/log/apache-syncope/enduser:rw
+      depends_on:
+        - syncope-core
