@@ -1,6 +1,5 @@
-FROM monsantoco/min-jessie:latest
+FROM ubuntu:16.04
 
-RUN echo "deb http://ftp.de.debian.org/debian jessie-backports main" >> /etc/apt/sources.list
 RUN set -x && apt-get update
 
 #######################
@@ -8,12 +7,9 @@ RUN set -x && apt-get update
 # PREPARE ENVIRONMENT #
 #                     #
 #######################
-
-RUN apt-get  -y install tomcat8 libpostgresql-jdbc-java postgresql postgresql-client openjdk-8-jre 
-#RUN apt-get -y install libpostgresql-jdbc-java openjdk-8-jre
+RUN apt-get  -y install tomcat8 libpostgresql-jdbc-java postgresql postgresql-client openjdk-8-jre
 
 # Clean apt
-#RUN rm -rf /var/lib/apt/lists/*
 RUN apt-get update && \
     apt-get upgrade -y && \
     apt-get clean -y && \
@@ -25,13 +21,14 @@ RUN apt-get update && \
     rm -rf /usr/share/doc/*
 
 # Use the PostgreSQL JDBC driver with Tomcat
-RUN ln -s /usr/share/java/postgresql-jdbc4.jar /usr/share/tomcat8/lib/ 
+RUN ln -s /usr/share/java/postgresql-jdbc4.jar /usr/share/tomcat8/lib/
 
 #Get correct Java opts for Tomcat
 COPY tomcat8 /etc/default/
 
 COPY startSyncope.sh /
 RUN chmod +x /startSyncope.sh
+
 
 #################################
 #                               #
@@ -42,7 +39,7 @@ RUN chmod +x /startSyncope.sh
 # Download Apache Syncope debs
 WORKDIR /
 
-ADD http://it.apache.contactlab.it/syncope/2.0.1/apache-syncope-enduser-2.0.1.deb apache-syncope-enduser-2.0.1.deb
+ADD http://it.apache.contactlab.it/syncope/2.0.2/apache-syncope-enduser-2.0.2.deb apache-syncope-enduser-2.0.2.deb
 RUN service tomcat8 stop
 
 #Install Apache Syncope from debs
