@@ -1,0 +1,25 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose convert
+    kompose.version: 1.6.0 (e4adfef)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: syncope-core
+  name: syncope-core
+spec:
+  replicas: 1
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        io.kompose.service: syncope-core
+    spec:
+      containers:
+      - image: docker.io/mornindew/syncope:core
+        name: syncope-core
+        resources: {}
+      restartPolicy: Always
+status: {}

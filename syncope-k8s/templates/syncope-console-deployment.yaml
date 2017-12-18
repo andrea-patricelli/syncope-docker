@@ -1,0 +1,25 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose convert
+    kompose.version: 1.6.0 (e4adfef)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: syncope-console
+  name: syncope-console
+spec:
+  replicas: 1
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        io.kompose.service: syncope-console
+    spec:
+      containers:
+      - image: docker.io/mornindew/syncope:console
+        name: syncope-console
+        resources: {}
+      restartPolicy: Always
+status: {}
