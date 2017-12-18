@@ -1,0 +1,7 @@
+version: '2'
+services:
+  syncope-enduser:
+    build:
+      context: ""
+      dockerfile: Dockerfile
+    image: docker.io/mornindew/syncope:enduser

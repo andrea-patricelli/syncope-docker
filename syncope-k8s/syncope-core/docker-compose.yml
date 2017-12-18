@@ -1,0 +1,7 @@
+version: '2'
+services:
+  myservice:
+    build:
+      context: ""
+      dockerfile: Dockerfile
+    image: docker.io/mornindew/syncope:core

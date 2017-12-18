@@ -1,0 +1,37 @@
+= Syncope Setup Instructions
+Doc Writer <craig>
+2017-10-15
+:revnumber: {project-version}
+
+== Overview
+Separate WARS for the three main components (syncope-core, syncope-enduser, syncope-console).
+
+It uses postgres at the database and it expects a postgres instance to be installed at "postgres-postgresql:5432" (the default for helm install).
+
+=== Prerequisite
+
+Need to have K8s running and accesable.  For help on that go here (https://www.linux.com/blog/learn/chapter/Intro-to-Kubernetes/2017/5/set-cicd-pipeline-kubernetes-part-1-overview)
+
+Dockerhub accessable from your K8s
+
+Need to install postgres - use the stable helm install
+
+[source,postgresInstall]
+.Postgres Install Instructions
+----
+{
+ helm install --name postgres stable/postgresql
+}
+----
+
+=== Installation
+
+Install syncope via the helm chart.  Need to install from /platform-setup/modules/syncope-k8s (until it is in your cache)
+[source,fullInstall]
+.Full Install Instructions
+----
+{
+ helm install --name syncope syncope-k8s
+}
+----
+
