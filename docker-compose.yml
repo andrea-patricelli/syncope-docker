@@ -7,7 +7,7 @@ services:
 #########################
 
     postgres:
-        image: postgres:latest
+        image: postgres:9
         ports:
          - "5432:5432"        
         environment:
@@ -24,11 +24,11 @@ services:
 #########################
 
     syncope-core:
-      image: syncope-docker-core:2.0.2
+      image: syncope-core:2.0.7
       ports:
         - "8080:8080"
       volumes:
-        - /var/log/apache-syncope:/tmp/log/apache-syncope/core:rw
+        - /var/log/apache-syncope:/var/log/apache-syncope:rw
       depends_on:
         -  postgres      
 
@@ -37,11 +37,11 @@ services:
 ############################
 
     syncope-console:
-      image:  syncope-docker-console:2.0.2
+      image:  syncope-console:2.0.7
       ports:
         - "9080:8080"
       volumes:
-        - /var/log/apache-syncope:/tmp/log/apache-syncope/console:rw
+        - /var/log/apache-syncope:/var/log/apache-syncope:rw
       depends_on:
         - syncope-core
 
@@ -50,10 +50,10 @@ services:
 ###############################
 
     syncope-enduser:
-      image:  syncope-docker-enduser:2.0.2
+      image:  syncope-enduser:2.0.7
       ports:
         - "7080:8080"
       volumes:
-        - /var/log/apache-syncope:/tmp/log/apache-syncope/enduser:rw
+        - /var/log/apache-syncope:/var/log/apache-syncope:rw
       depends_on:
         - syncope-core

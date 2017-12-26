@@ -39,14 +39,14 @@ RUN chmod +x /startSyncope.sh
 # Download Apache Syncope debs
 WORKDIR /
 
-ADD http://it.apache.contactlab.it/syncope/2.0.2/apache-syncope-2.0.2.deb apache-syncope-2.0.2.deb
+ADD http://it.apache.contactlab.it/syncope/2.0.7/apache-syncope-2.0.7.deb apache-syncope-2.0.7.deb
 RUN service tomcat8 stop
 
 #Install Apache Syncope from debs
-RUN dpkg -i apache-syncope-*.deb
+RUN dpkg -i apache-syncope-*.deb && rm apache-syncope-2.0.7.deb
 
-COPY provisioning.properties /etc/apache-syncope/provisioning.properties
-COPY domains/ /etc/apache-syncope/domains
+COPY conf/*.properties /etc/apache-syncope/
+COPY conf/domains/ /etc/apache-syncope/domains
 
 EXPOSE 8080
 
