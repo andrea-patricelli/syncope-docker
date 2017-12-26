@@ -1,23 +1,46 @@
-######################
-#  PostgreSQL Database
-######################
-postgres:
-  image: postgres:9.1
-  ports:
-   - "15432:5432"
-  environment:
-    POSTGRES_PASSWORD: syncope
-    POSTGRES_USER: syncope
-    POSTGRES_DB: syncope    
-#  volumes:
-   # - ./db-scripts_pms/:/docker-entrypoint-initdb.d/:rw
-#    - /srv/docker/data/pms-db/:/var/lib/mysql/:rw
+version: '2'
 
-syncopedocker:
-  image: syncope-docker
-  expose:
-    - "8080"
-  ports:
-    - "9080:8080"
-  links:
-    - postgres
+services:
+
+#########################
+#  PostgreSQL Database  #
+#########################
+
+    postgres:
+        image: postgres:9
+        ports:
+         - "5432:5432"        
+        environment:
+         -  POSTGRES_PASSWORD=syncope
+         -  POSTGRES_USER=syncope
+         -  POSTGRES_DB=syncope
+#        volumes:
+#         - ./db-init-scripts/:/docker-entrypoint-initdb.d/:ro
+#         - postgresql_data:/var/lib/postgresql/data
+#         - /etc/timezone:/etc/timezone:ro
+
+#########################
+#  Apache Syncope Core  #
+#########################
+
+    syncope-core:
+      image: syncope-core:1.2.10
+      ports:
+        - "8080:8080"
+      volumes:
+        - /var/log/apache-syncope:/var/log/apache-syncope:rw
+      depends_on:
+        -  postgres      
+
+############################
+#  Apache Syncope Console  #
+############################
+
+    syncope-console:
+      image:  syncope-console:1.2.10
+      ports:
+        - "9080:8080"
+      volumes:
+        - /var/log/apache-syncope:/var/log/apache-syncope:rw
+      depends_on:
+        - syncope-core
